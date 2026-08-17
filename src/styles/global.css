@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/*  CRYPTOLAB DESIGN TOKENS                                            */
+/*  The whole visual identity lives here as CSS custom properties.     */
+/*  Tailwind maps some of these to the `core` / `accent` / `surface`   */
+/*  color utilities (see tailwind.config.js).                          */
+/* ------------------------------------------------------------------ */
+:root {
+  /* Surfaces */
+  --c-bg: #06070b;
+  --c-bg-elev: #0b0d15;
+  --c-bg-deep: #04050a;
+
+  /* Text */
+  --c-text: #e8eaf2;
+  --c-text-dim: #93a0b4;
+  --c-text-faint: #5b6778;
+
+  /* Accents (restrained, luminous, scientific) */
+  --c-core: 94 234 212; /* teal signal — primary interaction colour */
+  --c-accent: 251 191 36; /* amber — highlights / warnings */
+  --c-danger: 248 113 113; /* red — errors */
+  --c-violet: 167 139 250; /* violet — secondary emphasis */
+
+  /* Hairline borders & glass */
+  --c-border: rgba(148, 163, 184, 0.16);
+  --c-border-strong: rgba(148, 163, 184, 0.3);
+  --c-glass: rgba(15, 18, 28, 0.6);
+  --c-glass-strong: rgba(13, 16, 25, 0.86);
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+}
+
+* {
+  border-color: var(--c-border);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Ambient backdrop so there is never a flat black void */
+#root {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(94, 234, 212, 0.06), transparent 60%),
+    radial-gradient(900px 500px at 90% 110%, rgba(167, 139, 250, 0.05), transparent 60%),
+    var(--c-bg);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Focus visibility (accessibility)                                   */
+/* ------------------------------------------------------------------ */
+:focus-visible {
+  outline: 2px solid rgb(var(--c-core));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Scrollbars — subtle, on-brand                                      */
+/* ------------------------------------------------------------------ */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.22);
+  border-radius: 999px;
+  border: 2px solid var(--c-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.36);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Reusable component classes                                         */
+/* ------------------------------------------------------------------ */
+@layer components {
+  /* Translucent, hairline-bordered panel used across the lab */
+  .glass-panel {
+    background: var(--c-glass);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .hairline {
+    border-color: var(--c-border);
+  }
+
+  /* Uppercase, letter-spaced mono label — the lab's annotation voice */
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c-text-dim);
+  }
+
+  /* Fine dotted technical grid (used behind panels) */
+  .tech-grid {
+    background-image:
+      radial-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 24px rgba(94, 234, 212, 0.25);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Reduced motion — strip decorative animation & glow                 */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
