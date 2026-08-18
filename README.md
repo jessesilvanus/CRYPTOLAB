@@ -27,6 +27,23 @@ Interactive Cryptography & Secure Communication Laboratory
 - Vite
 - Tailwind CSS
 
+## 🖥️ Project Preview
+
+### CRYPTOLAB Landing Page
+
+![CRYPTOLAB Landing Page](docs/screenshots/landing.png)
+
+### Laboratory Dashboard
+
+![Laboratory Dashboard](docs/screenshots/home.png)
+
+### Encryption Laboratory
+
+![Encryption Laboratory](docs/screenshots/encryption.png)
+
+### Decryption Laboratory
+
+![Decryption Laboratory](docs/screenshots/decryption.png)
 ## 🎓 Academic Project
 
 VTU 7th Semester — Cryptography and Network Security
